@@ -1,5 +1,7 @@
 FROM kalilinux/kali-rolling AS builder
 
+WORKDIR /root
+
 LABEL org.label-schema.name='Sn1per - Kali Linux SREDevOps.dev mod' \
       org.label-schema.description='Automated pentest framework for offensive security experts' \
       org.label-schema.usage='https://github.com/sredevopsdev/sn1per' \
@@ -19,16 +21,18 @@ RUN sed -i 's/systemctl status ${PG_SERVICE}/service ${PG_SERVICE} status/g' /us
     service postgresql start && \
     msfdb reinit
 
-RUN mkdir -pv /security/sn1per 
+# RUN mkdir -pv /root/sn1per 
 
-WORKDIR /security/sn1per
+# WORKDIR /root/sn1per
 
 COPY . .
 
-RUN ./install.sh \
-    && sniper -u force
+RUN ./install.sh --force
 
 FROM builder AS base
+
+WORKDIR /root
+#COPY --from=base /usr/share /usr/share
 
 #WORKDIR /security/sn1per
 
