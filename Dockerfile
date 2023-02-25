@@ -1,4 +1,4 @@
-FROM kalilinux/kali-rolling
+FROM kalilinux/kali-rolling AS builder
 
 LABEL org.label-schema.name='Sn1per - Kali Linux' \
     org.label-schema.description='Automated pentest framework for offensive security experts' \
@@ -6,7 +6,7 @@ LABEL org.label-schema.name='Sn1per - Kali Linux' \
     org.label-schema.url='https://github.com/sredevopsdev/Sn1per' \
     org.label-schema.vendor='https://sredevops.dev' \
     org.label-schema.schema-version='1.0' \
-    org.label-schema.docker.cmd.devel='docker run --rm -ti sredevopsdev/Sn1per'
+    org.label-schema.docker.cmd.devel='docker run --rm -ti ghcr.io/sredevopsdev/sn1per:latest'
 
 RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free" > /etc/apt/sources.list && \
     echo "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
