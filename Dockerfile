@@ -1,6 +1,6 @@
-FROM kalilinux/kali-rolling AS builder
+FROM kalilinux/kali-rolling AS base
 
-LABEL org.label-schema.name='Sn1per - Kali Linux' \
+LABEL org.label-schema.name='Sn1per - Kali Linux SREDevOps.de mod' \
     org.label-schema.description='Automated pentest framework for offensive security experts' \
     org.label-schema.usage='https://github.com/sredevopsdev/Sn1per' \
     org.label-schema.url='https://github.com/sredevopsdev/Sn1per' \
@@ -15,20 +15,23 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x \
         && apt-get -yqq update \
         && apt-get -yqq dist-upgrade \
-        && apt-get clean
-RUN apt-get install -y metasploit-framework
+        && apt-get clean && apt-get install -y metasploit-framework
+
+FROM base AS builder
 
 RUN sed -i 's/systemctl status ${PG_SERVICE}/service ${PG_SERVICE} status/g' /usr/bin/msfdb && \
     service postgresql start && \
     msfdb reinit
 
-RUN mkdir -pv /security/Sn1per
+RUN mkdir -pv /security/sn1per
 
-WORKDIR /security/Sn1per
+WORKDIR /security/sn1per
 
 COPY . .
 
 RUN ./install.sh \
     && sniper -u force
+
+FROM builder AS base
 
 CMD ["bash"]
