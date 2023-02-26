@@ -17,7 +17,6 @@ echo -e "$OKRED               /_/                 $RESET"
 echo -e "$RESET"
 echo -e "$OKORANGE + -- --=[ https://sn1persecurity.com $RESET"
 echo -e "$OKORANGE + -- --=[ Sn1per CE by @xer0dayz $RESET"
-echo -e "$OKORANGE + -- --=[ Mod by SREDevOps.dev $RESET"
 echo ""
 
 INSTALL_DIR=/usr/share/sniper
@@ -72,57 +71,54 @@ if [[ $UBUNTU_CHECK == "DISTRIB_ID=Ubuntu" ]]; then
 fi
 
 echo -e "$OKBLUE[*]$RESET Installing package dependencies...$RESET"
-apt update || apt-get update 
-apt install -y \
-				python3-paramiko \
-				nfs-common \
-				nodejs \
-				wafw00f \
-				xdg-utils \
-				ruby \
-				rubygems \
-				python \
-				dos2unix \
-				aha \
-				libxml2-utils \
-				rpcbind \
-				cutycapt \
-				host \
-				whois \
-				dnsrecon \
-				curl \
-				nmap \
-				php7.4 \
-				php7.4-curl \
-				hydra \
-				sqlmap \
-				nbtscan \
-				nikto \
-				whatweb \
-				sslscan \
-				jq \
-				golang \
-				adb \
-				xsltproc \
-				ldapscripts
-
-	
-apt install -y libssl-dev 2> /dev/null
-apt install -y python-pip 2> /dev/null
-apt remove -y python3-pip
-apt install -y  python3-pip \
-	xmlstarlet \
-  net-tools \
-  sp7zip-full \
-  jsbeautifier
-apt install -y theharvester 2> /dev/null
-apt install -y phantomjs 2> /dev/null
-apt install -y chromium 2> /dev/null
-apt install -y xvfb \
-  urlcrazy \
-  iputils-ping \
-  enum4linux \
-  dnsutils
+apt-get update
+apt-get install -y python3-paramiko
+apt-get install -y nfs-common
+apt-get install -y nodejs
+apt-get install -y wafw00f
+apt-get install -y xdg-utils
+apt-get install -y ruby
+apt-get install -y rubygems
+apt-get install -y python
+apt-get install -y dos2unix
+apt-get install -y aha
+apt-get install -y libxml2-utils
+apt-get install -y rpcbind
+apt-get install -y cutycapt
+apt-get install -y host
+apt-get install -y whois
+apt-get install -y dnsrecon
+apt-get install -y curl
+apt-get install -y nmap
+apt-get install -y php7.4
+apt-get install -y php7.4-curl
+apt-get install -y hydra
+apt-get install -y sqlmap
+apt-get install -y nbtscan
+apt-get install -y nikto
+apt-get install -y whatweb
+apt-get install -y sslscan
+apt-get install -y jq
+apt-get install -y golang
+apt-get install -y adb
+apt-get install -y xsltproc
+apt-get install -y ldapscripts
+apt-get install -y libssl-dev 2> /dev/null
+apt-get install -y python-pip 2> /dev/null
+apt-get remove -y python3-pip
+apt-get install -y python3-pip
+apt-get install -y xmlstarlet
+apt-get install -y net-tools
+apt-get install -y p7zip-full
+apt-get install -y jsbeautifier
+apt-get install -y theharvester 2> /dev/null
+apt-get install -y phantomjs 2> /dev/null
+apt-get install -y chromium 2> /dev/null
+apt-get install -y xvfb
+apt-get install -y urlcrazy
+apt-get install -y iputils-ping
+apt-get install -y enum4linux
+apt-get install -y dnsutils
 
 echo -e "$OKBLUE[*]$RESET Installing Metasploit...$RESET"
 curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > /tmp/msfinstall
